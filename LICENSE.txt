@@ -36,10 +36,4 @@ either expressed or implied, of Roy Pfund.
 Copyright 2010 Roy Pfund.                                   All rights reserved.
 Use of this source code is governed by a BSD-style License(the "License");  that
 can be found in the LICENSE file.  You may obtain another copy of the License at
-
     http://github.com/GlassGhost/Glas-Test-Area/raw/master/LICENSE.txt
-
-Unless required by applicable law or agreed to in writing, software  distributed
-under the License is distributed on an "AS  IS"  BASIS,  WITHOUT  WARRANTIES  OR
-CONDITIONS OF ANY KIND, either express or  implied.  See  the  License  for  the
-specific language governing permissions and limitations under the License.

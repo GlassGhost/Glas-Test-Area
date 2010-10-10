@@ -1,9 +1,8 @@
-/******************************PROGRAM DESCRIPTION******************************
-A Calculator
-************************************Author(s)***********************************
-Roy Pfund, 
-original from pages 107-175 of The C++ Programming Language 3rd Ed.; Bjarne
-Stroustrup
+/**********************************License(s)***********************************
+Copyright 2010 Roy Pfund.                                   All rights reserved.
+Use of this source code is governed by a BSD-style License(the "License");  that
+can be found in the LICENSE file.  You may obtain another copy of the License at
+    http://github.com/GlassGhost/Glas-Test-Area/raw/master/LICENSE.txt
 *************************************Inputs*************************************
 The grammar for the language accepted by the calculator
 program:
@@ -26,19 +25,31 @@ primary:
 		NAME = expression
 		- primary
 		(expression)
+*********************************Pre-Conditions*********************************
+none
+******************************PROGRAM DESCRIPTION*******************************
+A calculator from pages 107-175 of The C++ Programming Language 3rd Ed.; Bjarne
+Stroustrup
+
+compile with: any ISO/IEC-14882 or C++2003 compliant compiler
+*********************************Post-Conditions********************************
+none
 *************************************Output*************************************
 The evaluation of the expressions you give it
 ***********************************Revisions************************************
 (10-11-2009)-0.1-Got it working!
 (10-10-2009)-0.01-File created
-***********************************License(s)***********************************
-NO RIGHTS, NO WARRANTY of any kind. NOT EVEN AN IMPLIED ONE. Just a quick hack.
-/******************************************************************************/
+*********************************System Headers********************************/
 #include <iostream>
 #include <string>
 #include <map>
 #include <cctype>
 using namespace std;
+/********************************Local Headers*********************************/
+typedef unsigned short UINT16; typedef short	INT16;
+typedef unsigned	   UINT32; typedef int		INT32; typedef float  FLOAT32;
+typedef unsigned long  UINT64; typedef long int INT64; typedef double FLOAT64;
+/************************************Macros************************************/
 /**********************************Variables***********************************/
 enum Token_value{
 	NAME, NUMBER, END,
@@ -50,21 +61,24 @@ double number_value;
 string string_value;
 map <string, double> table;
 int no_of_errors;
+/*****************************Feature Test Switches****************************/
+/*hopefully someday I will be able to define this with 1*/
+#define _POSIX_SOURCE 0
+kill_arg_bool = 1;
+/*****************************File scope variables*****************************/
+/******************************External variables******************************/
+/*****************************Structures and Unions****************************/
 /**********************************Functions***********************************/
 double expr(bool get);
 double error(const string& s);
 double prim(bool get);
 double term(bool get);
 Token_value get_token();
+/******************************External Functions******************************/
 
-int main(int argc, char *argv[]){/*Main logic**********************************/
-	if(argc > 1){/*************Command line args*******************************/
-		if(argv[0]!="-")//Tests if user argument is legitimate.
-			goto end_of_command_line_args;
-		std::string arg = argv[--argc];//insert new aruments after this line.
-		if(arg.find("-help") != -1)//a standard command line argument
-			std::cout <<"Command line args are:\n\t-help\n";
-	} end_of_command_line_args:/***********************************************/
+/***************************Signal catching functions**************************/
+
+int main(int argc, char *argv[]){/*MAIN logic**********************************/
 	table["pi"] = 3.1415926535897932385; // insert predefined names
 	table["e"] = 2.7182818284590452354;
 	printf("Enter a mathematical expression (e.g. \"2 + 2\"), or Type \"exit\" to exit:\n");
@@ -74,13 +88,17 @@ int main(int argc, char *argv[]){/*Main logic**********************************/
 		if (curr_tok == PRINT) continue;
 		cout << expr(false) <<'\n';
 	}
-	system("pause"); //keeps Microsoft command prompt from going bananas
+	/*system("pause");/*keeps Microsoft command prompt from going bananas*/
 	return no_of_errors;
-}/**********************************End Main***********************************/
+}/**********************************End MAIN***********************************/
 
-/**********************************Functions**********************************/
-double expr(bool get){// add and subtract
-	double left=term(get);
+FLOAT64 expr(bool get){
+/*Input(s)		:nothing
+PreCondition(s) :none
+Description		:add and subtract
+PostCondition(s):none
+Output(s)		:nothing
+*/	FLOAT64 left=term(get);
 	for(;;) //"forever"
 		switch (curr_tok) {
 			case PLUS:
@@ -92,17 +110,22 @@ double expr(bool get){// add and subtract
 			default:
 				return left;
 		}
-}
+}/*END expr___________________________________________________________________*/
 
-double term(bool get){
-	double left = prim(get);
+FLOAT64 term(bool get){
+/*Input(s)		:nothing
+PreCondition(s) :none
+Description		:
+PostCondition(s):none
+Output(s)		:nothing
+*/	FLOAT64 left = prim(get);
 	for(;;){
 		switch (curr_tok){
 			case MUL:
 				left *= prim(true);
 				break;
 			case DIV:
-				if (double d = prim(true)){
+				if (FLOAT64 d = prim(true)){
 					left /= d;
 					break;
 				}
@@ -111,26 +134,32 @@ double term(bool get){
 				return left;
 		}
 	}
-}
+}/*END term___________________________________________________________________*/
 
-double prim(bool get){		// handle primaries
+FLOAT64 prim(bool get){
+/*Input(s)		:nothing
+PreCondition(s) :none
+Description		:handle primaries
+PostCondition(s):none
+Output(s)		:nothing
+*/	
 	if (get) get_token();
 
 	switch (curr_tok){
 		case NUMBER:		// floating-point constant
-		{	double v = number_value;
+		{	FLOAT64 v = number_value;
 			get_token();
 			return v;
 		}
 		case NAME:
-		{	double &v = table[string_value];
+		{	FLOAT64 &v = table[string_value];
 			if (get_token() == ASSIGN) v = expr(true);
 			return v;
 		}
 		case MINUS:			// unary minus
 			return -prim(true);
 		case LP:
-		{	double e = expr(true);
+		{	FLOAT64 e = expr(true);
 			if (curr_tok != RP) return error(") expected");
 			get_token();	// eat ')'
 			return e;
@@ -138,10 +167,15 @@ double prim(bool get){		// handle primaries
 		default:
 			return error("primary expected");
 	}
-}
+}/*END prim___________________________________________________________________*/
 
 Token_value get_token(){
-	char ch=0;
+/*Input(s)		:nothing
+PreCondition(s) :none
+Description		:
+PostCondition(s):none
+Output(s)		:nothing
+*/	char ch=0;
 	do { if(!cin.get(ch))return curr_tok=END;}
 		while(ch!='\n' && isspace(ch));// skip whitespace except ’\n’
 	switch (ch) {
@@ -169,10 +203,16 @@ Token_value get_token(){
 			error("bad token");
 			return curr_tok=PRINT;
 	}
-}
+}/*END get_token______________________________________________________________*/
 
-double error(const string& s){
+FLOAT64 error(const string& s){
+/*Input(s)		:nothing
+PreCondition(s) :none
+Description		:
+PostCondition(s):none
+Output(s)		:nothing
+*/	
 	no_of_errors++;
 	cerr << "error: " << s << '\n';
 	return 1;
-}
+}/*END error__________________________________________________________________*/

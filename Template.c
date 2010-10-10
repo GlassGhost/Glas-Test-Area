@@ -1,8 +1,29 @@
-/* Feature Test Switches */
-#define _POSIX_SOURCE 0
-/* System Headers */
+/**********************************License(s)***********************************
+Copyright 2010 Roy Pfund.                                   All rights reserved.
+Use of this source code is governed by a BSD-style License(the "License");  that
+can be found in the LICENSE file.  You may obtain another copy of the License at
+    http://github.com/GlassGhost/Glas-Test-Area/raw/master/LICENSE.txt
+*************************************Inputs*************************************
+accepts a command line arg "-kill"
+*********************************Pre-Conditions*********************************
+none
+******************************PROGRAM DESCRIPTION*******************************
+A generic "main class" C++ template with command line arguments.	tab=4 spaces
+It uses a single bit to store booleans through the use of macros and typecasting
+with the standard library "bitset"
+
+compile with: any ISO/IEC-14882 or C++2003 compliant compiler
+*********************************Post-Conditions********************************
+none
+*************************************Output*************************************
+prints my own version of "Hello World"
+***********************************Revisions************************************
+(insert date & time)-v0.01-File created
+*********************************System Headers********************************/
 #include <stdio.h>
 #include "typenums.h"
+/* Feature Test Switches */
+#define _POSIX_SOURCE 0
 /* Local Headers */
 /* Macros */
 /* File scope variables */
