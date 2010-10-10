@@ -10,8 +10,7 @@ are permitted provided that the following conditions are met:
 3. All advertising materials mentioning features or use of  this  software  must
    display the following acknowledgement:
 
-This   product   includes   software   developed   by   its   contributors   and
-Roy Pfund.
+This product includes software developed by  its  contributors  and  Roy  Pfund.
 
 4. Neither the name of the Copyright Holder(s) nor the names of its contributors
    may be used to endorse or promote products derived from this software without
@@ -31,9 +30,21 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. --4 Clause BSD
 The views and conclusions contained in the software and documentation are  those
 of the authors and should not be interpreted as representing official  policies,
 either expressed or implied, of Roy Pfund.
-  END OF TERMS AND CONDITIONS
+    END OF TERMS AND CONDITIONS
 *******************************Boilerplate Notice*******************************
 Copyright 2010 Roy Pfund.                                   All rights reserved.
-Use of this source code is governed by a BSD-style License(the "License");  that
-can be found in the LICENSE file.  You may obtain another copy of the License at
+Use of this source code is governed by a BSD-style License(the  "License")  that
+can be found in the LICENSE file. You should have received a copy of the License
+along with this distribution.  If not,  You may obtain a copy of the License  at
     http://github.com/GlassGhost/Glas-Test-Area/raw/master/LICENSE.txt
+***********************************Appendices***********************************
+  APPENDIX A: Miscellaneous info
+      This copy of the 4-Clause BSD-style license, is derived from:
+http://www.freebsd.org/cgi/cvsweb.cgi/~checkout~/src/COPYRIGHT?rev=1.1;content-type=text%2Fplain
+      Made in 1994, shortly after the 1992 USL v. BSDi lawsuit.
+      reworded then computer justified and manually tweaked by Roy Pfund.
+
+  APPENDIX B: How to make the different BSD licenses
+      The original 4-Clause BSD license gives the 3-clause or 2-clause BSD
+      Licenses,  by removing the 3rd clause  or  the  3rd and 4th  clauses
+      respectively.
