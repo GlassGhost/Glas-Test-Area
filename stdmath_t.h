@@ -65,10 +65,10 @@ Mohs hardness   Mineral     Absolute hardness
 8   Topaz (Al2SiO4(OH–,F–)2)        200
 7   Quartz (SiO2)                   100
 6   Orthoclase Feldspar (KAlSi3O8)  72
-5   Apatite (Ca5(PO4)3(OH–,Cl–,F–))   48
+5   Apatite (Ca5(PO4)3(OH–,Cl–,F–)) 48
 4   Fluorite (CaF2)                 21
 3   Calcite (CaCO3)                 9
-2   Gypsum (CaSO4·2H2O)                3
+2   Gypsum (CaSO4·2H2O)             3
 1   Talc (Mg3Si4O10(OH)2)           1
 All minerals listed can be ground into a powder(with enough force of course).
 */
