@@ -31,8 +31,8 @@ typedef float float32_t;
 typedef double float64_t;
 /*!***************************Structures and Unions*****************************
 =====uintN_t(N bit unsigned integer type)=====
-====intN_t(N bit two’s complement signed integer type)====
-====floatN_t(IEE754 binary float)====
+=====intN_t(N bit two’s complement signed integer type)=====
+=====floatN_t(IEE754 binary float)=====
 ALL uppercase variables WILL; denote the number of bits in their respective lowercase variables.\\
 Interchange format Encoding of s(sign), e(exponent), and  x(mantissa):
 if $N \text{ mod } 32 \neq 0$ or if $N \neq 16$; N is invalid.\\
