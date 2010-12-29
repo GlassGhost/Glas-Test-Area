@@ -5,7 +5,7 @@ can be found in the LICENSE file. You should have received a copy of the License
 along with this distribution.  If not,  You may obtain a copy of the License  at
     http://github.com/GlassGhost/Glas-Test-Area/raw/master/LICENSE.txt
 ******************************LIBRARY DESCRIPTION*******************************
-This header that makes sure the following static types are provided:
+This header makes sure that, the following static types are provided:
 intN_t = N bit two’s complement signed integer type, (should be multiple of 8)
 uintN_t = N bit unsigned integer type, (should be multiple of 8)
 floatN_t = N bit IEE754 binary float, (MUST be multiple of 32 OR equal to 16)
@@ -41,7 +41,7 @@ sNaN    signaling NaN
 
 ===IEEE754-2008===
 ALL uppercase variables WILL; denote the number of bits in their respective lowercase variables.\\
-if $N \text{ mod } 32 \neq 0$ or if $N \neq 16$ N is invalid.\\
+if $N \text{ mod } 32 \neq 0$ or if $N \neq 16$; N is invalid.\\
 $n$ = Value of some float$N$\_t representation; given $s$(sign), $e$(exponent), and $x$(mantissa). For $n_p$; $p=0$ at it's msb and decrements 1 traveling right to it's lsb $n_{N-1}$\\
 if $2-2^{E-1}=e_\text{min} \leq e \leq e_\text{max}=2^{E-1}-1$; $n=2^{e}sx$\\
 if $e > e_\text{max}=2^{E-1}-1$ and $x=1$; $n=s\times \infty$\\
@@ -51,7 +51,7 @@ if $e < e_\text{min}=2-2^{E-1}$ and $x\neq 1$;\\
 Except for when \{$N=16$, $E=5$; $N=32$, $E=8$\}; $\forall N\neq (16\text{ or }32), E=\text{round}(4{\log}_{2}(N))-13$.\\$\forall N, S=1$; $\forall N, X=N-E-1$.
 $$e =  1-\left(2^{E-1} \right)+\sum_{p=1}^{E}n_p 2^{E-p}$$
 $$s=(-1)^{n_0}; x=1+\sum_{p=-1}^{-X}n_{(E-p+1)} 2^p$$
-\begin{verbatim}
+
 Interchange format Encoding of s(sign), e(exponent), and  x(mantissa):
     e.g. float32_t π=0x40490FDB
        msb  lsb msb                 lsb

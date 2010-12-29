@@ -8,25 +8,25 @@ Compile and execute without arguments.
 
 Note: Your compiler must parse
 
-		#define _ -a
-		-_
+        #define _ -a
+        -_
 
       as "--a" and not "-(-a)" or some other tokenized form.  Some strictly
       conforming ANSI C Preprocessors may object to this: for such
       compilers, you can elide the nonstandard token-pasting requirement
       by changing the #define line to:
 
-		#define _ F-->00||F-OO--;
+        #define _ F-->00||F-OO--;
 
 You might enjoy looking at the output of:
 
-	cc -E westley.c
+    cc -E westley.c
 
 */
 #define _ -F<00||--F-OO--;
 int F=00,OO=00;
-main(){	F_OO();
-		printf("%1.3f\n",4.*-F/OO/OO);
+main(){ F_OO();
+        printf("%1.3f\n",4.*-F/OO/OO);
 }
 
 F_OO(){     _-_-_-_
