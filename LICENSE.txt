@@ -1,4 +1,5 @@
-Copyright 2010 Roy Pfund.                                   All rights reserved.
+***********************************License(s)***********************************
+Copyright © 2010 Roy Pfund.                                 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -7,11 +8,9 @@ are permitted provided that the following conditions are met:
 2. Redistributions in binary form must reproduce  the  above  copyright  notice,
    this list of conditions and the following  disclaimer  in  the  documentation
    and/or other materials provided with the distribution.
-3. All advertising materials mentioning features or use of  this  software  must
+3. All advertising materials mentioning features  or  use of this software  must
    display the following acknowledgement:
-
-This product includes software developed by  its  contributors  and  Roy  Pfund.
-
+This product includes software  developed by  its contributor(s) and  Roy Pfund.
 4. Neither the name of the Copyright Holder(s) nor the names of its contributors
    may be used to endorse or promote products derived from this software without
    specific prior written permission.
@@ -31,20 +30,34 @@ The views and conclusions contained in the software and documentation are  those
 of the authors and should not be interpreted as representing official  policies,
 either expressed or implied, of Roy Pfund.
     END OF TERMS AND CONDITIONS
+*********************************Contributor(s)*********************************
+GlassGhost- Roy Brian Allen Pfund  1987-May-8 Christus Saint John Hospital 77058
 *******************************Boilerplate Notice*******************************
-Copyright 2010 Roy Pfund.                                   All rights reserved.
-Use of this source code is governed by a BSD-style License(the  "License")  that
+Copyright © 2010 Roy Pfund.                                 All rights reserved.
+Use of this source code is governed by a  BSD-style License(the "License")  that
 can be found in the LICENSE file. You should have received a copy of the License
 along with this distribution.  If not,  You may obtain a copy of the License  at
     http://github.com/GlassGhost/Glas-Test-Area/raw/master/LICENSE.txt
 ***********************************Appendices***********************************
   APPENDIX A: Miscellaneous info
-      This copy of the 4-Clause BSD-style license, is derived from:
+    This BSD-style license, is reworded then  computer  justified  and  manually
+    tweaked by Roy Pfund from the original revision. The original revision  made
+    in 1994 shortly after the 1992 USL v. BSDi lawsuit, can be found at:
 http://www.freebsd.org/cgi/cvsweb.cgi/~checkout~/src/COPYRIGHT?rev=1.1;content-type=text%2Fplain
-      Made in 1994, shortly after the 1992 USL v. BSDi lawsuit.
-      reworded then computer justified and manually tweaked by Roy Pfund.
+    The Boilerplate notice is a combination of the Chromium(C),  Apache(C),  and
+    GNU(C) GPL boilerplates. Chromium(C), Apache(C), and GNU(C)  are  of  course
+    copyright their respective copyright owners.
 
   APPENDIX B: How to make the different BSD licenses
-      The original 4-Clause BSD license gives the 3-clause or 2-clause BSD
-      Licenses,  by removing the 3rd clause  or  the  3rd and 4th  clauses
-      respectively.
+    The original 4-Clause  BSD  license  gives  the  3-clause  or  2-clause  BSD
+    Licenses,  by  removing  the  3rd  clause  or  the  3rd  and   4th   clauses
+    respectively.
+
+  APPENDIX C: How to apply a BSD-Style license to your work
+    You have 2 choices; CONSULT A LAWYER or use your brain, preferably the least
+    expensive of the 2.
+
+  APPENDIX D: Subjective Opinion
+    "The 4-Clause BSD at the very least means: You MUST Give Credit WHERE it  is
+    due, AND DO  NOT  ADVERTISE  FEAUTURES  derived  from  the  software  AND/OR
+    documentation."
