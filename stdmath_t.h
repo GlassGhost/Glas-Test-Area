@@ -58,19 +58,6 @@ MSB most significant bit
 NaN not a number
 qNaN    quiet NaN
 sNaN    signaling NaN
-====??rating??====
-Mohs hardness   Mineral     Absolute hardness
-10  Diamond (C)                     1600
-9   Corundum (Al2O3)                400
-8   Topaz (Al2SiO4(OH–,F–)2)        200
-7   Quartz (SiO2)                   100
-6   Orthoclase Feldspar (KAlSi3O8)  72
-5   Apatite (Ca5(PO4)3(OH–,Cl–,F–)) 48
-4   Fluorite (CaF2)                 21
-3   Calcite (CaCO3)                 9
-2   Gypsum (CaSO4·2H2O)             3
-1   Talc (Mg3Si4O10(OH)2)           1
-All minerals listed can be ground into a powder(with enough force of course).
 */
 /**********************************Variables***********************************/
 /*****************************Feature Test Switches****************************/
@@ -98,29 +85,6 @@ All minerals listed can be ground into a powder(with enough force of course).
 //    }
 //    for(int16_t i=15; i>=0; i--) printf("%c", test[i]);
 //    printf("\n");
-//}//_____________________________________________________________________________
-
-/*
-unsigned int rotateleft4(uint64_t data){
-    uint64_t carry;
-    carry = data & 0x0FFFFFFFFFFFFFFF;
-    data  = data << 4;
-    if (carry) data += carry;
-    return data;
-}*/
-
-//uint64_t rotateleft4(uint64_t data){
-///*!Input(s)       : an unsigned integer "data"
-//PreCondition(s) :
-//Description       : rotates data 4 bit to the left
-//PostCondition(s):
-//Output(s)     : none
-//*/
-//  uint64_t carry;
-//  carry = data & 0x0FFFFFFFFFFFFFFF;
-//  data  = data << 4;
-//  if (carry) data += carry;
-//  return data;
 //}//_____________________________________________________________________________
 
 /******************************External Functions******************************/
