@@ -5,7 +5,7 @@ can be found in the LICENSE file. You should have received a copy of the License
 along with this distribution.  If not,  You may obtain a copy of the License  at
     http://github.com/GlassGhost/Glas-Test-Area/raw/master/LICENSE.txt
 ******************************LIBRARY DESCRIPTION*******************************
-This header makes sure that, the following static types are provided:
+This header makes sure that the following static types are provided:
 intN_t = N bit two’s complement signed integer type, (should be multiple of 8)
 uintN_t = N bit unsigned integer type, (should be multiple of 8)
 floatN_t = N bit IEE754 binary float, (MUST be multiple of 32 OR equal to 16)
@@ -30,17 +30,11 @@ than on the actual library at this time.
 typedef float float32_t;
 typedef double float64_t;
 /*!***************************Structures and Unions*****************************
-=====N bit unsigned integer type=====
-====N bit two’s complement signed integer type====
-====N bit Floats=====
-LSB least significant bit
-MSB most significant bit
-NaN not a number
-qNaN    quiet NaN
-sNaN    signaling NaN
-
-===IEEE754-2008===
+=====uintN_t(N bit unsigned integer type)=====
+====intN_t(N bit two’s complement signed integer type)====
+====floatN_t(IEE754 binary float)====
 ALL uppercase variables WILL; denote the number of bits in their respective lowercase variables.\\
+Interchange format Encoding of s(sign), e(exponent), and  x(mantissa):
 if $N \text{ mod } 32 \neq 0$ or if $N \neq 16$; N is invalid.\\
 $n$ = Value of some float$N$\_t representation; given $s$(sign), $e$(exponent), and $x$(mantissa). For $n_p$; $p=0$ at it's msb and decrements 1 traveling right to it's lsb $n_{N-1}$\\
 if $2-2^{E-1}=e_\text{min} \leq e \leq e_\text{max}=2^{E-1}-1$; $n=2^{e}sx$\\
@@ -52,7 +46,6 @@ Except for when \{$N=16$, $E=5$; $N=32$, $E=8$\}; $\forall N\neq (16\text{ or }3
 $$e =  1-\left(2^{E-1} \right)+\sum_{p=1}^{E}n_p 2^{E-p}$$
 $$s=(-1)^{n_0}; x=1+\sum_{p=-1}^{-X}n_{(E-p+1)} 2^p$$
 
-Interchange format Encoding of s(sign), e(exponent), and  x(mantissa):
     e.g. float32_t π=0x40490FDB
        msb  lsb msb                 lsb
     ┌─┬────────┬───────────────────────┐
@@ -60,19 +53,11 @@ Interchange format Encoding of s(sign), e(exponent), and  x(mantissa):
     │1│   1    │       1.921FB6        │
     │0│10000000│10010010000111111011011│
     └─┴────────┴───────────────────────┘
-e.g. floatN_t meaning a float with N bits float32_t being a 32 float; with n being the value of the representation.
-Value of some floatN_t X given s(sign), e(exponent), and x(mantissa):
-IEEE754-2008 §3.6:
-Binary Floating Point Numbers(floatN_t):
-    N   16  32  64  128 N(where N≥64 AND N mod 32=0)
-    s   1   1   1   1   1
-    e   5   8   11  15  round(4*log2(N))-13
-    x   10  23  52  112 N-e-1
-Decimal Floating Point Numbers(decimaln_t):
-    n   32  64  128 n(where n mod 32=0)
-    s   1   1   1   1
-    e   11  13  17  n/16 + 9
-    x   20  50  110 15*n/16 - 10
+LSB least significant bit
+MSB most significant bit
+NaN not a number
+qNaN    quiet NaN
+sNaN    signaling NaN
 ====??rating??====
 Mohs hardness   Mineral     Absolute hardness
 10  Diamond (C)                     1600
