@@ -52,12 +52,3 @@ http://www.freebsd.org/cgi/cvsweb.cgi/~checkout~/src/COPYRIGHT?rev=1.1;content-t
     The original 4-Clause  BSD  license  gives  the  3-clause  or  2-clause  BSD
     Licenses,  by  removing  the  3rd  clause  or  the  3rd  and   4th   clauses
     respectively.
-
-  APPENDIX C: How to apply a BSD-Style license to your work
-    You have 2 choices; CONSULT A LAWYER or use your brain, preferably the least
-    expensive of the 2.
-
-  APPENDIX D: Subjective Opinion
-    "The 4-Clause BSD at the very least means: You MUST Give Credit WHERE it  is
-    due, AND DO  NOT  ADVERTISE  FEAUTURES  derived  from  the  software  AND/OR
-    documentation."
