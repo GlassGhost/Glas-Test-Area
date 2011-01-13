@@ -31,7 +31,7 @@ of the authors and should not be interpreted as representing official  policies,
 either expressed or implied, of Roy Pfund.
     END OF TERMS AND CONDITIONS
 *********************************Contributor(s)*********************************
-GlassGhost- Roy Brian Allen Pfund  1987-May-8 Christus Saint John Hospital 77058
+GlassGhost - Roy Brian Allen Pfund 1987-May-8 Christus Saint John Hospital 77058
 *******************************Boilerplate Notice*******************************
 Copyright © 2010 Roy Pfund.                                 All rights reserved.
 Use of this source code is governed by a  BSD-style License(the "License")  that
