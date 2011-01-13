@@ -5,7 +5,7 @@ can be found in the LICENSE file. You should have received a copy of the License
 along with this distribution.  If not,  You may obtain a copy of the License  at
     http://github.com/GlassGhost/Glas-Test-Area/raw/master/LICENSE.txt
 ******************************LIBRARY DESCRIPTION*******************************
-This header makes sure that the following static types are provided:
+This header SHALL make sure that the following static types are provided:
 intN_t = N bit two’s complement signed integer type, (should be multiple of 8)
 uintN_t = N bit unsigned integer type, (should be multiple of 8)
 floatN_t = N bit IEE754 binary float, (MUST be multiple of 32 OR equal to 16)
@@ -21,7 +21,8 @@ And SHALL depecrate the following incomplete chart:
 **********************************DEPENDENCIES**********************************
 stdint.h
 ***********************************Revisions************************************
-(2010-Nov-17 00:00 UTC)-v0.01-1Mohs-GlassGhost File created. More emphasis is on  Documentation, than on the actual library at this time.
+(2010-Nov-17 00:00 UTC)-v0.01-1Mohs-GlassGhost File created. More emphasis is on
+Documentation, than on the actual library at this time.
 *********************************System Headers********************************/
 #include <stdint.h>
 /********************************Local Headers*********************************/
@@ -29,24 +30,43 @@ stdint.h
 typedef float float32_t;
 typedef double float64_t;
 /*!***************************Structures and Unions*****************************
-ALL uppercase variables WILL; denote the number of bits in their respective lowercase variables.
+ALL uppercase variables WILL; denote the number  of  bits  in  their  respective
+lowercase variables.
+LSB least significant bit
+MSB most significant bit
+NaN not a number
+qNaN    quiet NaN
+sNaN    signaling NaN
 =====uintN_t(N bit unsigned integer type)=====
-if $N \text{ mod } 8 \neq 0$; N is invalid. $n$ = value of some uint$N$\_t representation. $radix=2$ and $p=N-1$ at the MSB, and decrements 1 traveling right towards the LSB($p=0$). uint$N$\_t can represent all ℕatural numbers from 0 to $2^{N}-1$
+If $N \text{ mod } 8 \neq 0$; N is invalid.  $n$  =  value  of  some  uint$N$\_t
+representation. $radix=2$ and $p=N-1$ at the MSB,  and  decrements  1  traveling
+right towards the  LSB($p=0$).  uint$N$\_t can  represent  all  ℕatural  numbers
+from 0 to $2^{N}-1$
 $$n =  \sum_{p=0}^{N-1}n_p 2^{p}$$
-
-    e.g. uint8_t 42=0x2A
-    ┌─────────┐
-    │    n    │
-    │0010 1010│
-    └─────────┘
-     msb   lsb
+e.g. (uint16_t)0xC248=49736
+┌────────────────┐
+│       n        │
+│1100001001001000│
+└────────────────┘
+ msb          lsb
 =====intN_t(N bit two’s complement signed integer type)=====
-if $N \text{ mod } 8 \neq 0$; N is invalid. Identical to the uint$N$\_t type, except if $n \geq 2^{N-1}; n= n-2^{N}$.
-$n$ = value of some int$N$\_t representation. $radix=2$ and $p=N-1$ at the MSB, and decrements 1 traveling right towards the LSB($p=0$).  An N-bit int$N$\_t can represent every integer in the range $-2^{N-1} \ldots+2^{N-1}-1$
-$$n =  -2^{N}n_{N-1}+\sum_{p=0}^{N-2}-1^{n_{N-1}}n_p 2^{p}$$
+If $N \text{ mod } 8 \neq 0$; N is invalid. Identical to  the  uint$N$\_t  type,
+except if $n \geq  2^{N-1};  n=  1+n-2^{N}$.  $n$  =  value  of  some  int$N$\_t
+representation. $radix=2$ and $p=N-1$ at the MSB,  and  decrements  1  traveling
+right towards the LSB($p=0$). An N-bit int$N$\_t can represent every integer  in
+the range $-2^{N-1} \ldots+2^{N-1}-1$
+$$n = (1-2^{N})n_{N-1}+\sum_{p=0}^{N-2}n_p 2^{p}$$
+e.g. (int16_t)0xC248=-15799
+┌─┬───────────────┐
+│ │      n        │
+│1│100001001001000│
+└─┴───────────────┘
+   msb         lsb
 =====floatN_t(N bit IEE754 binary float)=====
-if $N \text{ mod } 32 \neq 0$ or if $N \neq 16$; N is invalid.
-Interchange format Encoding of float$N$\_t, where $n$ = value of some float$N$\_t representation; given $s$(sign), $e$(exponent), and $x$(mantissa). For $n_p$; $p=0$ at it's msb and decrements 1 traveling right to it's lsb $n_{N-1}$\\
+If $N \text{ mod } 32 \neq 0$ or if $N  \neq  16$;  N  is  invalid.  Interchange
+format  Encoding  of  float$N$\_t,  where  $n$  =  value  of  some   float$N$\_t
+representation; given $s$(sign), $e$(exponent), and  $x$(mantissa).  For  $n_p$;
+$p=0$ at it's msb and decrements 1 traveling right to it's lsb $n_{N-1}$
 Except for when \{$N=16$, $E=5$; $N=32$, $E=8$\};\\
 $\forall N\neq (16\text{ or }32), E=\text{round}(4{\log}_{2}(N))-13$.\\
 $\forall N: S=1\text{ AND } X=N-E-1$.
@@ -55,22 +75,15 @@ $$s=(-1)^{n_0}; x=\sum_{p=-1}^{-X}n_{(E-p+1)} 2^p$$
 if $2-2^{E-1}=e_\text{min} \leq e \leq e_\text{max}=2^{E-1}-1$; $n=s(x+1)2^{e}$\\
 if $e < e_\text{min}=2-2^{E-1}$; $n=sx2^{e+1}$\\
 if $e > e_\text{max}=2^{E-1}-1$ and $x=0$; $n=s\times \infty$\\
-if $e > e_\text{max}=2^{E-1}-1$ and $x\neq 0$; $n$ is qNaN or sNaN\\
-
-    e.g. float32_t π=0x40490FDB
-       msb  lsb msb                 lsb
-    ┌─┬────────┬───────────────────────┐
-    │s│   e    │           x           │
-    │1│   1    │       1.921FB6        │
-    │0│10000000│10010010000111111011011│
-    └─┴────────┴───────────────────────┘
-LSB least significant bit
-MSB most significant bit
-NaN not a number
-qNaN    quiet NaN
-sNaN    signaling NaN
+if $e > e_\text{max}=2^{E-1}-1$ and $x\neq 0$; $n$ is qNaN or sNaN
+e.g. (float16_t)0xC248=-3.140625≆-π
+┌─┬─────┬──────────┐
+│s│  e  │    x     │
+│1│  1  │  1.920   │
+│1│10000│1001001000│
+└─┴─────┴──────────┘
+  msb lsb msb    lsb
 =====decimalN_t(N bit IEE754 decimal float)=====
-
 */
 /**********************************Variables***********************************/
 /*****************************Feature Test Switches****************************/
