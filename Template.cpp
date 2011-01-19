@@ -1,5 +1,5 @@
 /**********************************License(s)***********************************
-Copyright © 2010 Roy Pfund.                                 All rights reserved.
+Copyright © 2010, 2011 Roy Pfund.                           All rights reserved.
 Use of this source code is governed by a  BSD-style License(the "License")  that
 can be found in the LICENSE file. You should have received a copy of the License
 along with this distribution.  If not,  You may obtain a copy of the License  at

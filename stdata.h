@@ -1,5 +1,5 @@
 /**********************************License(s)***********************************
-Copyright © 2010 Roy Pfund.                                 All rights reserved.
+Copyright © 2010, 2011 Roy Pfund.                           All rights reserved.
 Use of this source code is governed by a  BSD-style License(the "License")  that
 can be found in the LICENSE file. You should have received a copy of the License
 along with this distribution.  If not,  You may obtain a copy of the License  at
@@ -25,7 +25,6 @@ stdint.h
 Documentation, than on the actual library at this time.
 *********************************System Headers********************************/
 #include <stdint.h>
-/********************************Local Headers*********************************/
 /************************************Macros************************************/
 typedef float float32_t;
 typedef double float64_t;
@@ -72,11 +71,6 @@ if $e > e_\text{max}=2^{E-1}-1$ and $x≠0$; $n$ is qNaN or sNaN
         └────────────────┘  └─┴───────────────┘  └─┴─────┴──────────┘
          msb          lsb      msb         lsb     msb lsb msb    lsb
 */
-/**********************************Variables***********************************/
-/*****************************Feature Test Switches****************************/
-//#define _POSIX_SOURCE 1
-/*****************************File scope variables*****************************/
-/******************************External variables******************************/
 /**********************************Functions***********************************/
 
 //void print_hex( uint64_t num ){
@@ -99,6 +93,3 @@ if $e > e_\text{max}=2^{E-1}-1$ and $x≠0$; $n$ is qNaN or sNaN
 //    for(int16_t i=15; i>=0; i--) printf("%c", test[i]);
 //    printf("\n");
 //}//_____________________________________________________________________________
-
-/******************************External Functions******************************/
-/***************************Signal catching functions**************************/
