@@ -38,23 +38,21 @@ NaN not a number
 qNaN    quiet NaN
 sNaN    signaling NaN
 =====uintN_t(N bit unsigned integer type)=====
-If $N \text{ mod } 8 ≠ 0$; N is invalid.  $n$  =  value  of  some  uint$N$_t
-representation. $radix=2$ and $p=N-1$ at the MSB,  and  decrements  1  traveling
-right towards the  LSB($p=0$).  uint$N$_t can  represent  all  ℕatural  numbers
-from 0 to $2^{N}-1$
+If $N \mod 8 ≠ 0$; N is invalid. $n$ = value of some  uint$N$_t  representation.
+$radix=2$ and $p=N-1$ at the MSB, and decrements 1 traveling right  towards  the
+LSB($p=0$). uint$N$_t can represent all ℕatural numbers from 0 to $2^{N}-1$
 $$n =  \sum_{p=0}^{N-1}n_p 2^{p}$$
 =====intN_t(N bit two’s complement signed integer type)=====
-If $N \text{ mod } 8 ≠ 0$; N is invalid. Identical to the uint$N$_t type, except
-if $n ≥ 2^{N-1}; n=1+n-2^{N}$.  $n$ = value  of  some  int$N$_t  representation.
-$radix=2$ and $p=N-1$ at the MSB, and decrements 1 traveling right  towards  the
-LSB($p=0$). An N-bit int$N$_t can represent every integer in the range $-2^{N-1}
-…+2^{N-1}-1$
+If $N \mod 8 ≠ 0$; N is invalid. Identical to the uint$N$_t type, except if $n ≥
+2^{N-1};n=1+n-2^{N}$. $n$ = value of some int$N$_t representation. $radix=2$ and
+$p=N-1$ at the MSB, and decrements 1 traveling right towards the LSB($p=0$).  An
+N-bit int$N$_t can represent every integer in the range $-2^{N-1} … +2^{N-1}-1$
 $$n = (1-2^{N})n_{N-1}+\sum_{p=0}^{N-2}n_p 2^{p}$$
 =====floatN_t(N bit IEE754 binary float)=====
-If $N \text{ mod } 32 ≠ 0$ or if $N ≠ 16$;  N  is  invalid.  Interchange  format
-Encoding of float$N$_t, where $n$ = value  of  some  float$N$_t  representation;
-given $s$(sign), $e$(exponent), and $x$(mantissa). For $n_p$; $p=0$ at it's  msb
-and decrements 1 traveling right to it's lsb $n_{N-1}$
+If $N \mod 32 ≠ 0$ or if $N ≠ 16$; N is invalid.  Interchange format Encoding of
+float$N$_t, where $n$ = value of some float$N$_t representation;given $s$(sign),
+$e$(exponent), and $x$(mantissa). For $n_p$; $p=0$ at  it's  msb  and decrements
+1 traveling right to it's lsb $n_{N-1}$
 Except for when \{$N=16$, $E=5$; $N=32$, $E=8$\};
 $∀ N≠(16\text{ or }32), E=\text{round}(4{\log}_{2}(N))-13$.
 $∀ N: S=1\text{ AND } X=N-E-1$.
