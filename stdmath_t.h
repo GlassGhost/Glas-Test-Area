@@ -38,52 +38,41 @@ NaN not a number
 qNaN    quiet NaN
 sNaN    signaling NaN
 =====uintN_t(N bit unsigned integer type)=====
-If $N \text{ mod } 8 \neq 0$; N is invalid.  $n$  =  value  of  some  uint$N$\_t
+If $N \text{ mod } 8 ≠ 0$; N is invalid.  $n$  =  value  of  some  uint$N$_t
 representation. $radix=2$ and $p=N-1$ at the MSB,  and  decrements  1  traveling
-right towards the  LSB($p=0$).  uint$N$\_t can  represent  all  ℕatural  numbers
+right towards the  LSB($p=0$).  uint$N$_t can  represent  all  ℕatural  numbers
 from 0 to $2^{N}-1$
 $$n =  \sum_{p=0}^{N-1}n_p 2^{p}$$
-e.g. (uint16_t)0xC248=49736
-┌────────────────┐
-│       n        │
-│1100001001001000│
-└────────────────┘
- msb          lsb
 =====intN_t(N bit two’s complement signed integer type)=====
-If $N \text{ mod } 8 \neq 0$; N is invalid. Identical to  the  uint$N$\_t  type,
-except if $n \geq  2^{N-1};  n=  1+n-2^{N}$.  $n$  =  value  of  some  int$N$\_t
-representation. $radix=2$ and $p=N-1$ at the MSB,  and  decrements  1  traveling
-right towards the LSB($p=0$). An N-bit int$N$\_t can represent every integer  in
-the range $-2^{N-1} \ldots+2^{N-1}-1$
+If $N \text{ mod } 8 ≠ 0$; N is invalid. Identical to the uint$N$_t type, except
+if $n ≥ 2^{N-1}; n=1+n-2^{N}$.  $n$ = value  of  some  int$N$_t  representation.
+$radix=2$ and $p=N-1$ at the MSB, and decrements 1 traveling right  towards  the
+LSB($p=0$). An N-bit int$N$_t can represent every integer in the range $-2^{N-1}
+…+2^{N-1}-1$
 $$n = (1-2^{N})n_{N-1}+\sum_{p=0}^{N-2}n_p 2^{p}$$
-e.g. (int16_t)0xC248=-15799
-┌─┬───────────────┐
-│ │      n        │
-│1│100001001001000│
-└─┴───────────────┘
-   msb         lsb
 =====floatN_t(N bit IEE754 binary float)=====
-If $N \text{ mod } 32 \neq 0$ or if $N  \neq  16$;  N  is  invalid.  Interchange
-format  Encoding  of  float$N$\_t,  where  $n$  =  value  of  some   float$N$\_t
-representation; given $s$(sign), $e$(exponent), and  $x$(mantissa).  For  $n_p$;
-$p=0$ at it's msb and decrements 1 traveling right to it's lsb $n_{N-1}$
-Except for when \{$N=16$, $E=5$; $N=32$, $E=8$\};\\
-$\forall N\neq (16\text{ or }32), E=\text{round}(4{\log}_{2}(N))-13$.\\
-$\forall N: S=1\text{ AND } X=N-E-1$.
+If $N \text{ mod } 32 ≠ 0$ or if $N ≠ 16$;  N  is  invalid.  Interchange  format
+Encoding of float$N$_t, where $n$ = value  of  some  float$N$_t  representation;
+given $s$(sign), $e$(exponent), and $x$(mantissa). For $n_p$; $p=0$ at it's  msb
+and decrements 1 traveling right to it's lsb $n_{N-1}$
+Except for when \{$N=16$, $E=5$; $N=32$, $E=8$\};
+$∀ N≠(16\text{ or }32), E=\text{round}(4{\log}_{2}(N))-13$.
+$∀ N: S=1\text{ AND } X=N-E-1$.
 $$e =  1-\left(2^{E-1} \right)+\sum_{p=1}^{E}n_p 2^{E-p}$$
 $$s=(-1)^{n_0}; x=\sum_{p=-1}^{-X}n_{(E-p+1)} 2^p$$
-if $2-2^{E-1}=e_\text{min} \leq e \leq e_\text{max}=2^{E-1}-1$; $n=s(x+1)2^{e}$\\
-if $e < e_\text{min}=2-2^{E-1}$; $n=sx2^{e+1}$\\
-if $e > e_\text{max}=2^{E-1}-1$ and $x=0$; $n=s\times \infty$\\
-if $e > e_\text{max}=2^{E-1}-1$ and $x\neq 0$; $n$ is qNaN or sNaN
-e.g. (float16_t)0xC248=-3.140625≆-π
-┌─┬─────┬──────────┐
-│s│  e  │    x     │
-│1│  1  │  1.920   │
-│1│10000│1001001000│
-└─┴─────┴──────────┘
-  msb lsb msb    lsb
+if $2-2^{E-1}=e_\text{min} ≤ e ≤ e_\text{max}=2^{E-1}-1$; $n=s(x+1)2^{e}$
+if $e < e_\text{min}=2-2^{E-1}$; $n=sx2^{e+1}$
+if $e > e_\text{max}=2^{E-1}-1$ and $x=0$; $n=s×∞$
+if $e > e_\text{max}=2^{E-1}-1$ and $x≠0$; $n$ is qNaN or sNaN
 =====decimalN_t(N bit IEE754 decimal float)=====
+
+=====Examples=====
+		   0xC248=49736        0xC248=-15799      0xC248=-3.140625≆-π
+		┌───(uint16_t)───┐  ┌─┬─(int16_t)─────┐  ┌─┬─ (float16_t)───┐
+		│       n        │  │ │      n        │  │s│  e  │    x     │
+		│1100001001001000│  │1│100001001001000│  │1│10000│1001001000│
+		└────────────────┘  └─┴───────────────┘  └─┴─────┴──────────┘
+		 msb          lsb      msb         lsb     msb lsb msb    lsb
 */
 /**********************************Variables***********************************/
 /*****************************Feature Test Switches****************************/
