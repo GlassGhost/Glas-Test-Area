@@ -71,25 +71,70 @@ if $e > e_\text{max}=2^{E-1}-1$ and $x≠0$; $n$ is qNaN or sNaN
         └────────────────┘  └─┴───────────────┘  └─┴─────┴──────────┘
          msb          lsb      msb         lsb     msb lsb msb    lsb
 */
-/**********************************Functions***********************************/
+/*!********************************Functions************************************
+shr(shift right), shl(shift left), ror(rotate right), rol(rotate left)
 
-//void print_hex( uint64_t num ){
-///*!Input(s)     : an unsigned integer
-//PreCondition(s) :
-//Description     : prints the hex value of the unsigned integer "num"
-//If you can count to 8 you can count in hex; numbers 8-F are identical to 0-7 except the MSB, so when your confused just think 000-111!
-//PostCondition(s):
-//Output(s)       : none
-//*/  const char hex[16] = "0123456789ABCDEF";// hex[16] = "F";
-///*  for (int16_t i=sizeof(num)*2;i>0;{i--; rol(num, 4);})
-//        printf("%c", hex[num % 16]);
-//*/
-//    //char hex[16] = "0123456789ABCDE"; hex[16] = "F";
-//    char test[16] = "0000000000000000";
-//    for(int16_t i=0; num>0; num /= 16){
-//        test[i] = hex[(num % 16)];
-//        i++;
-//    }
-//    for(int16_t i=15; i>=0; i--) printf("%c", test[i]);
-//    printf("\n");
-//}//_____________________________________________________________________________
+When rotating multiple times only the last $log_{2}{N}$ bits are pertinent since rotating a uintN_t N(equal to $2^{log_{2}{N}}$) times would not do anything.
+
+When shifting multiple times only the last $log_{2}{N}+1$ bits are pertinent since shifting a uintN_t N(equal to $2^{log_{2}{N}}$) times or more would not do anything.
+*/
+
+template <typename uintN_t>
+uintN_t ror(uintN_t num, uintN_t num_rotates){
+/*!Input(s)     :
+PreCondition(s) :
+Description     : rotates "num" right "num_rotates" times
+PostCondition(s):
+Output(s)       : num
+*/  num_rotates = num_rotates % (sizeof(num)*8);//avoid redundant rotates.
+	return (num << ((sizeof(num)*8)-num_rotates)) & (num >> num_rotates);
+};//____________________________________________________________________________
+
+template <typename uintN_t>
+uintN_t rol(uintN_t num, uintN_t num_rotates){
+/*!Input(s)     :
+PreCondition(s) :
+Description     : rotates "num" left "num_rotates" times
+PostCondition(s):
+Output(s)       : num
+*/  num_rotates = num_rotates % (sizeof(num)*8);//avoid redundant rotates.
+	return (num >> ((sizeof(num)*8)-num_rotates)) & (num << num_rotates);
+};//____________________________________________________________________________
+
+template <typename uintN_t>
+uintN_t shr(uintN_t num, uintN_t num_rotates){
+/*!Input(s)     :
+PreCondition(s) :
+Description     : shifts "num" right "num_rotates" times
+PostCondition(s):
+Output(s)       : num
+*/  if (num_rotates >= (sizeof(num)*8)) return 0;//avoid redundant shifts.
+	return num >> num_rotates;
+};//____________________________________________________________________________
+
+template <typename uintN_t>
+uintN_t shl(uintN_t num, uintN_t num_rotates){
+/*!Input(s)     :
+PreCondition(s) :
+Description     : shifts "num" left "num_rotates" times
+PostCondition(s):
+Output(s)       : num
+*/  if (num_rotates >= (sizeof(num)*8)) return 0;//avoid redundant shifts.
+	return num << num_rotates;
+};//____________________________________________________________________________
+
+template <typename uintN_t>
+char [sizeof(uintN_t)*2] uint_to_hex( uintN_t num ){
+/*!Input(s)     : an unsigned integer
+PreCondition(s) :
+Description     : converts unsigned integer "num" into a hex string
+PostCondition(s):
+Output(s)       : none
+*/  char HEX[16] = "0123456789ABCDE"; HEX[16] = "F";
+//  const char hex[16] = "0123456789ABCDEF";
+    char string_hex[sizeof(num)*2];
+    for(int16_t i=sizeof(num)*2; i!=0; {i--; rol(num, 4);}){
+        string_hex[i] = HEX[(num % 16)];
+    }
+    return string_hex[];
+};//____________________________________________________________________________
