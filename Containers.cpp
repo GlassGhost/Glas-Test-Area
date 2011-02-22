@@ -30,9 +30,6 @@ instantiation. example:
 ******************************Feature Test Switches****************************/
 #define _POSIX_SOURCE 0
 /************************************Macros************************************/
-typedef unsigned short UINT16; typedef short    INT16;
-typedef unsigned       UINT32; typedef int      INT32;
-typedef unsigned long  UINT64; typedef long int INT64;
 /*********************************STRUCTURES***********************************/
 
 template <typename Object> deck{/*------Don't deal from the botom of the deck*/

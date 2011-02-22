@@ -11,15 +11,15 @@ break;//goes to current loop end
 continue;//goes to current loop start
 
 for (variable declaration; condition; variable update){
-	Code to execute while the condition is true
+    Code to execute while the condition is true
 }
 
 do {
-	Code to execute while the condition is true
+    Code to execute while the condition is true
 } while ( condition );
 
 while ( condition ){
-	Code to execute while the condition is true
+    Code to execute while the condition is true
 }
 
 **********************************DEPENDENCIES**********************************

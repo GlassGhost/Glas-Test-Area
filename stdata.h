@@ -79,48 +79,49 @@ When rotating multiple times only the last $log_{2}{N}$ bits are pertinent since
 When shifting multiple times only the last $log_{2}{N}+1$ bits are pertinent since shifting a uintN_t N(equal to $2^{log_{2}{N}}$) times or more would not do anything.
 */
 
+#ifdef __cplusplus
 template <typename uintN_t>
-uintN_t ror(uintN_t num, uintN_t num_rotates){
+uintN_t ror(uintN_t &num, uintN_t num_rotates){
 /*!Input(s)     :
 PreCondition(s) :
 Description     : rotates "num" right "num_rotates" times
 PostCondition(s):
 Output(s)       : num
 */  num_rotates = num_rotates % (sizeof(num)*8);//avoid redundant rotates.
-	return (num << ((sizeof(num)*8)-num_rotates)) & (num >> num_rotates);
+    return (num << ((sizeof(num)*8)-num_rotates)) & (num >> num_rotates);
 };//____________________________________________________________________________
 
 template <typename uintN_t>
-uintN_t rol(uintN_t num, uintN_t num_rotates){
+uintN_t rol(uintN_t &num, uintN_t num_rotates){
 /*!Input(s)     :
 PreCondition(s) :
 Description     : rotates "num" left "num_rotates" times
 PostCondition(s):
 Output(s)       : num
 */  num_rotates = num_rotates % (sizeof(num)*8);//avoid redundant rotates.
-	return (num >> ((sizeof(num)*8)-num_rotates)) & (num << num_rotates);
+    return (num >> ((sizeof(num)*8)-num_rotates)) & (num << num_rotates);
 };//____________________________________________________________________________
 
 template <typename uintN_t>
-uintN_t shr(uintN_t num, uintN_t num_rotates){
+uintN_t shr(uintN_t &num, uintN_t &num_rotates){
 /*!Input(s)     :
 PreCondition(s) :
 Description     : shifts "num" right "num_rotates" times
 PostCondition(s):
 Output(s)       : num
 */  if (num_rotates >= (sizeof(num)*8)) return 0;//avoid redundant shifts.
-	return num >> num_rotates;
+    return num >> num_rotates;
 };//____________________________________________________________________________
 
 template <typename uintN_t>
-uintN_t shl(uintN_t num, uintN_t num_rotates){
+uintN_t shl(uintN_t &num, uintN_t &num_rotates){
 /*!Input(s)     :
 PreCondition(s) :
 Description     : shifts "num" left "num_rotates" times
 PostCondition(s):
 Output(s)       : num
 */  if (num_rotates >= (sizeof(num)*8)) return 0;//avoid redundant shifts.
-	return num << num_rotates;
+    return num << num_rotates;
 };//____________________________________________________________________________
 
 template <typename uintN_t>
@@ -133,8 +134,9 @@ Output(s)       : none
 */  char HEX[16] = "0123456789ABCDE"; HEX[16] = "F";
 //  const char hex[16] = "0123456789ABCDEF";
     char string_hex[sizeof(num)*2];
-    for(int16_t i=sizeof(num)*2; i!=0; {i--; rol(num, 4);}){
+    for(int16_t i=sizeof(num)*2; i!=0; {i--; num = rol(num, 4);}){
         string_hex[i] = HEX[(num % 16)];
     }
     return string_hex[];
 };//____________________________________________________________________________
+#endif
