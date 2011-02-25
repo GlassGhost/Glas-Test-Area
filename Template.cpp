@@ -39,16 +39,16 @@ of_test_arg_bool = 1;
 /******************************External variables******************************/
 /**********************************Functions***********************************/
 
-void of_test(){
 /*!Input(s)     :
 PreCondition(s) :
 Description     :tests ofstream
 PostCondition(s):
 Output(s)       :a file in the directory of the executable
-*/  std::ofstream txtout("./txtout.txt", std::ios::app);
+*/void of_test(){
+    std::ofstream txtout("./txtout.txt", std::ios::app);
     txtout << "ALL YOUR BASE ARE BELONG TO US!\n";
     txtout.close();
-}//_____________________________________________________________________________
+}/*___________________________________________________________________________*/
 
 /******************************External Functions******************************/
 /***************************Signal catching functions**************************/

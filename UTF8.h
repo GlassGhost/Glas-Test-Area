@@ -7,17 +7,17 @@ along with this distribution.  If not,  You may obtain a copy of the License  at
 ******************************LIBRARY DESCRIPTION*******************************
 reads or prints to the UTF8 encoding according to:
 http://tools.ietf.org/html/rfc3629
-**********************************DEPENDENCIES**********************************
-must have a getbyte and putbyte functions available
 ***********************************Revisions************************************
 (2011-Feb-17 00:00 UTC)-v0.01-1Mohs-GlassGhost File created. More emphasis is on
 Documentation, than on the actual library at this time.
+**********************************DEPENDENCIES**********************************
+must have a getbyte and putbyte functions available
 *********************************System Headers********************************/
 #include "stdata.h"
-#include <iso646.h>
 /************************************Macros************************************/
 /*!***************************Structures and Unions*****************************
-uint8_t an octet uint21_t the full length of a char
+uint21_t the full length of a char
+uint8_t an octet
 
 Char. number range  |        UTF-8 octet sequence
    (hexadecimal)    |              (binary)
@@ -37,13 +37,13 @@ Acceptable bytes | how to get corresponding pertinent bits
 */
 /*!********************************Functions***********************************/
 
-uint21_t GetUTF8Char(){
 /*!Input(s)     :
 PreCondition(s) : the next 1-4 bytes taken from the getbyte() function are a valid RFC3629 sequence. or getbyte() returns EOF.
 Description     :
 PostCondition(s):
 Output(s)       : a UTF8 char, error, or eof.
-*/  uint21_t thechar = 0; uint8_t CurrentOctet = getbyte();
+*/uint21_t GetUTF8Char(){
+    uint21_t thechar = 0; uint8_t CurrentOctet = getbyte();
     if (CurrentOctet < 0x80){//1 byte sequence
         return (uint21_t)CurrentOctet;
     }else if (CurrentOctet < 0xC0){//invalid byte sequence
@@ -64,26 +64,26 @@ Output(s)       : a UTF8 char, error, or eof.
         ReadContinuingOctet(thechar, CurrentOctet);
         if ((thechar > 0xFFFF)and(thechar < 0x10FFFF))return thechar; else return error;
     }else return error;
-}//_____________________________________________________________________________
+}/*___________________________________________________________________________*/
 
-inline void ReadContinuingOctet(uint21_t thechar, uint8_t CurrentOctet){
 /*!Input(s)     :
 PreCondition(s) : the next byte taken from the getbyte() function are a valid RFC3629 sequence. or getbyte() returns EOF.
 Description     :
 PostCondition(s): if
 Output(s)       : nothing, error, or eof.
-*/  CurrentOctet = getbyte();//getbyte() should be the function throwing error or eof
+*/inline void ReadContinuingOctet(uint21_t thechar, uint8_t CurrentOctet){
+    CurrentOctet = getbyte();//getbyte() should be the function throwing error or eof
     if (CurrentOctet !< 0xC0){return error;}
     thechar = (thechar << 6) bitor (uint21_t)(CurrentOctet bitand 0x3F);
-}//_____________________________________________________________________________
+}/*___________________________________________________________________________*/
 
-void PutUTF8Char(uint21_t thechar){
 /*!Input(s)     :
 PreCondition(s) :
 Description     :
 PostCondition(s):
 Output(s)       :
-*/  if (thechar < 0x0080){//1 byte sequence
+*/void PutUTF8Char(uint21_t thechar){
+    if (thechar < 0x0080){//1 byte sequence
         putbyte((uint8_t)thechar);
     }else if (thechar < 0x0800){//2 byte sequence
         thechar = ror(thechar, 6); putbyte((uint8_t)thechar bitor 0xC0);
@@ -98,13 +98,14 @@ Output(s)       :
         writeContinuingOctet(thechar);
         writeContinuingOctet(thechar);
     }else return error;
-}//_____________________________________________________________________________
+}/*___________________________________________________________________________*/
 
-inline void writeContinuingOctet(uint21_t thechar){
 /*!Input(s)     :
 PreCondition(s) :
 Description     :
 PostCondition(s):
 Output(s)       :
-*/ thechar = rol(thechar, 6);putbyte(((uint8_t)thechar bitand 0x3F) bitor 0x80);
-}//_____________________________________________________________________________
+*/inline void writeContinuingOctet(uint21_t thechar){
+   thechar = rol(thechar, 6);
+   putbyte(((uint8_t)thechar bitand 0x3F) bitor 0x80);
+}/*___________________________________________________________________________*/

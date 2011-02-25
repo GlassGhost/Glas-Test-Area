@@ -10,17 +10,12 @@ This header may convert loops into goto statements:
 break;//goes to current loop end
 continue;//goes to current loop start
 
-for (variable declaration; condition; variable update){
-    Code to execute while the condition is true
-}
+for (variable declaration; condition; variable update)
+[loop body statement]
 
-do {
-    Code to execute while the condition is true
-} while ( condition );
+do [loop body statement] while ( condition );
 
-while ( condition ){
-    Code to execute while the condition is true
-}
+while ( condition ) [loop body statement]
 
 **********************************DEPENDENCIES**********************************
 
