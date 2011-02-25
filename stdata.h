@@ -28,8 +28,8 @@ typedef float float32_t;
 typedef double float64_t;
 //bitwise arithmetic
 #define bitand &
-#define bitor ^
-#define bitxor |
+#define bitor |
+#define bitxor ^
 //bitwise arithmetic
 #define mod %
 //#define 
@@ -141,7 +141,7 @@ PostCondition(s):
 Output(s)       : num
 */template <typename uintN_t>
 uintN_t shr(uintN_t &num, uintN_t &num_rotates){
-    if (num_rotates >= (sizeof(num)*8)) return 0;//avoid redundant shifts.
+    if (num_rotates ≥ (sizeof(num)*8)) return 0;//avoid redundant shifts.
     return num >> num_rotates;
 };/*__________________________________________________________________________*/
 
@@ -152,7 +152,7 @@ PostCondition(s):
 Output(s)       : num
 */template <typename uintN_t>
 uintN_t shl(uintN_t &num, uintN_t &num_rotates){
-    if (num_rotates >= (sizeof(num)*8)) return 0;//avoid redundant shifts.
+    if (num_rotates ≥ (sizeof(num)*8)) return 0;//avoid redundant shifts.
     return num << num_rotates;
 };/*__________________________________________________________________________*/
 
