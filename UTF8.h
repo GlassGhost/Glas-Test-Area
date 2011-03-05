@@ -39,7 +39,7 @@ Acceptable bytes | how to get corresponding pertinent bits
 
 /*!Input(s)     :
 PreCondition(s) : the next 1-4 bytes taken from the getbyte() function are a valid RFC3629 sequence. or getbyte() returns EOF.
-Description     :
+Description     : calls getbyte() 1-4 times reading thechar from utf8
 PostCondition(s):
 Output(s)       : a UTF8 char, error, or eof.
 */uint21_t GetUTF8Char(){
@@ -72,16 +72,16 @@ Description     :
 PostCondition(s): if
 Output(s)       : nothing, error, or eof.
 */inline void ReadContinuingOctet(uint21_t thechar, uint8_t CurrentOctet){
-    CurrentOctet = getbyte();//getbyte() should be the function throwing error or eof
-    if (CurrentOctet !< 0xC0){return error;}
+    CurrentOctet = getbyte();//getbyte() should be throwing error or eof
+    if (CurrentOctet !< 0xC0) return error;
     thechar = (thechar << 6) bitor (uint21_t)(CurrentOctet bitand 0x3F);
 }/*___________________________________________________________________________*/
 
-/*!Input(s)     :
+/*!Input(s)     : a 21 bit unicode char < 0x110000
 PreCondition(s) :
-Description     :
-PostCondition(s):
-Output(s)       :
+Description     : calls putbyte() 1-4 times writing thechar in utf8
+PostCondition(s): thechar is the same as it's original state
+Output(s)       : none
 */void PutUTF8Char(uint21_t thechar){
     if (thechar < 0x0080){//1 byte sequence
         putbyte((uint8_t)thechar);
@@ -92,7 +92,7 @@ Output(s)       :
         thechar = ror(thechar, 12); putbyte((uint8_t)thechar bitor 0xE0);
         writeContinuingOctet(thechar);
         writeContinuingOctet(thechar);
-    }else if (thechar < 0x10FFFF){//4 byte sequence
+    }else if (thechar < 0x110000){//4 byte sequence
         thechar = ror(thechar, 18); putbyte(((uint8_t)thechar bitand 0x07) bitor 0xF0);
         writeContinuingOctet(thechar);
         writeContinuingOctet(thechar);

@@ -23,34 +23,10 @@ And SHALL undefine AND depecrate the following incomplete chart:
 Documentation, than on the actual library at this time.
 **********************************DEPENDENCIES*********************************/
 #include <stdint.h>
+#include "stdops.h"
 /************************************Macros************************************/
 typedef float float32_t;
 typedef double float64_t;
-//bitwise arithmetic
-#define bitand &
-#define bitor |
-#define bitxor ^
-//bitwise arithmetic
-#define mod %
-//#define 
-//logical operators
-#define ¬ !
-#define ∧ and
-#define ∨ or
-#define ⊻ xor
-//relational operators
-#define ≱ <
-#define ≰ >
-#define ≮ !<
-#define ≯ !>
-#define ≤ <=
-#define ≥ >=
-#define = ==
-#define ≠ !=
-//assignment operators
-#define ≔ =
-#define := =
-
 /*!***************************Structures and Unions*****************************
 ALL uppercase variables WILL; denote the number  of  bits  in  their  respective
 lowercase variables.
