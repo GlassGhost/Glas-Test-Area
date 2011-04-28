@@ -28,7 +28,7 @@ $Doc$ e.g. an IFrame; or if none specified, default to the current document,
 //	if (is_gecko){PendingStyle.href = 'FireFox.css';}//???needeed???
 	PendingStyle.type = 'text/css';
 	PendingStyle.rel = 'stylesheet';
-	PendingStyle.media = 'screen';//???needeed???
+//	PendingStyle.media = 'screen';//???needeed???
 	PendingStyle.innerHTML = CssText;
 	head.appendChild(PendingStyle);
 
