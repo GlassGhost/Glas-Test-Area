@@ -36,8 +36,7 @@ $Doc$ e.g. an IFrame; or if none specified, default to the current document,
 //	var PendingStyleDiv = doc.createElement('div');
 //	PendingStyleDiv.innerHTML = 
 //	'&nbsp;<style id="" type="text/css">'+CssText+'</style>&nbsp;';
-//	if (head.firstChild){// Add the new style of higher priority than the last 
-//						 // ones if there's already other elements in the head
+//	if (head.firstChild){// Add style with higher priority
 //		head.insertBefore(PendingStyleDiv.childNodes[1], head.firstChild);
 //	}else {
 //		head.appendChild(PendingStyleDiv.childNodes[1]);
