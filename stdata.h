@@ -18,6 +18,10 @@ And SHALL undefine AND depecrate the following incomplete chart:
     32      unsigned            int                 float
     64      unsigned long       long                double
     128     ????????            ?????               ??Quad
+
+and shall also define the functions:
+shr(), shl(), ror(), rol()
+described in further detail in the Functions section
 ***********************************Revisions************************************
 (2010-Nov-17 00:00 UTC)-v0.01-1Mohs-GlassGhost File created. More emphasis is on
 Documentation, than on the actual library at this time.
@@ -66,9 +70,9 @@ if $e > e_\text{max}=2^{E-1}-1$ and $x=0$; $n=s×∞$
 if $e > e_\text{max}=2^{E-1}-1$ and $x≠0$; $n$ is qNaN or sNaN
 
               =======decimalN_t(N bit IEE754 decimal float)=======
-
+Who cares?
                              =======Examples=======
-           0xC248=49736        0xC248=-15799      0xC248=-3.140625≆-π
+           0xC248=49736        0xC248=-15799      0xC248=-3.140625≈-π
         ┌───(uint16_t)───┐  ┌─┬─(int16_t)─────┐  ┌─┬─ (float16_t)───┐
         │       n        │  │ │      n        │  │s│  e  │    x     │
         │1100001001001000│  │1│100001001001000│  │1│10000│1001001000│
@@ -88,59 +92,39 @@ num is set it should go ahead and just return 0.
 */
 
 #ifdef __cplusplus
-/*!Input(s)     :
-PreCondition(s) :
-Description     : rotates "num" right "num_rotates" times
-PostCondition(s):
-Output(s)       : num
+/*! rotates "num" right "num_rotates" times
 */template <typename uintN_t>
-uintN_t ror(uintN_t &num, uintN_t num_rotates){
+uintN_t ror(uintN_t num, uintN_t num_rotates){
     num_rotates = (uint$log(2,sizeof(num)*8)$_t)num_rotates;//avoid redundant rotates.
     return (num << ((sizeof(num)*8)-num_rotates)) bitor (num >> num_rotates);
 };/*__________________________________________________________________________*/
 
-/*!Input(s)     :
-PreCondition(s) :
-Description     : rotates "num" left "num_rotates" times
-PostCondition(s):
-Output(s)       : num
+/*! rotates "num" left "num_rotates" times
 */template <typename uintN_t>
-uintN_t rol(uintN_t &num, uintN_t num_rotates){
+uintN_t rol(uintN_t num, uintN_t num_rotates){
     num_rotates = (uint(log(2,sizeof(num)*8))_t)num_rotates;//avoid redundant rotates.
     return (num >> ((sizeof(num)*8)-num_rotates)) bitor (num << num_rotates);
 };/*__________________________________________________________________________*/
 
-/*!Input(s)     :
-PreCondition(s) :
-Description     : shifts "num" right "num_rotates" times
-PostCondition(s):
-Output(s)       : num
+/*! shifts "num" right "num_rotates" times
 */template <typename uintN_t>
 uintN_t shr(uintN_t &num, uintN_t &num_rotates){
     if (num_rotates ≥ (sizeof(num)*8)) return 0;//avoid redundant shifts.
     return num >> num_rotates;
 };/*__________________________________________________________________________*/
 
-/*!Input(s)     :
-PreCondition(s) :
-Description     : shifts "num" left "num_rotates" times
-PostCondition(s):
-Output(s)       : num
+/*! shifts "num" left "num_rotates" times
 */template <typename uintN_t>
 uintN_t shl(uintN_t &num, uintN_t &num_rotates){
     if (num_rotates ≥ (sizeof(num)*8)) return 0;//avoid redundant shifts.
     return num << num_rotates;
 };/*__________________________________________________________________________*/
 
-/*!Input(s)     : an unsigned integer
-PreCondition(s) :
-Description     : converts unsigned integer "num" into a hex string
-PostCondition(s):
-Output(s)       : none
+/*! converts unsigned integer "num" into a hex string
 */template <typename uintN_t>
 uint8_t [sizeof(uintN_t)*2] uint_to_hex( uintN_t num ){
     uint8_t HEX[16] = "0123456789ABCDE"; HEX[16] = "F";
-//  const char hex[16] = "0123456789ABCDEF";
+//  const char HEX[16] = "0123456789ABCDEF";
     uint8_t string_hex[sizeof(num)*2];
     for(int16_t i=sizeof(num)*2; i!=0; {i--; num = rol(num, 4);}){
         string_hex[i] = HEX[(num % 16)];

@@ -62,7 +62,7 @@ public:
 
      deck(){/*------------------------------------------------deck constructor*/
         Sector_Obj_Capacity = Sector_Size/sizeof(Object);//determines how many objects can fit in a sector
-        Sector_ObjPtr_Capacity = Sector_Size/sizeof(Object*);//determines how many object can fit in a sector
+        Sector_ObjPtr_Capacity = Sector_Size/sizeof(Object*);//determines how many object ptrs can fit in a sector
         Top.ArrayPtr = new Object* ObjectPtr[Sector_ObjPtr_Capacity];
         Top.ArrayOffset = (Sector_ObjPtr_Capacity / 2)++;
         Top.Offset = (Sector_Obj_Capacity / 2)++;

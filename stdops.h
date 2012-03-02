@@ -23,9 +23,9 @@ This header SHALL make sure that the Unicode characters representing certain ope
 #define ∧ and
 #define ∨ or
 #define ⊻ xor
-//#define ⊼
-//#define ⊽
-//#define 
+//#define ⊼ nand
+//#define ⊽ nor
+//#define
 
 //relational operators
 #define ≱ <

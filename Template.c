@@ -9,11 +9,7 @@ accepts a command line arg "-kill"
 *********************************Pre-Conditions*********************************
 none
 ******************************PROGRAM DESCRIPTION*******************************
-A generic "main class" C++ template with command line arguments.    tab=4 spaces
-It uses a single bit to store booleans through the use of macros and typecasting
-with the standard library "bitset"
-
-compile with: any ISO/IEC-14882 or C++2003 compliant compiler
+A generic "main class" C template with command line arguments.      tab=4 spaces
 *********************************Post-Conditions********************************
 none
 *************************************Output*************************************
@@ -22,7 +18,7 @@ prints my own version of "Hello World"
 (insert date & time)-v0.01-File created
 *********************************System Headers********************************/
 #include <stdio.h>
-#include "typenums.h"
+#include "stdata.h"
 /* Feature Test Switches */
 #define _POSIX_SOURCE 0
 /* Local Headers */

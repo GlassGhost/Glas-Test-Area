@@ -17,7 +17,7 @@ none
 *************************************Output*************************************
 prints my own version of "Hello World"
 ***********************************Revisions************************************
-(UTC Year-Month-Day Hour:Minute:second)-v0.01-File created
+([±YYYY]-[MM]-[DD]T[hh]:[mm]:[ss] UTC)-v0.01-File created
 *********************************System Headers********************************/
 #include <iostream>
 #include <fstream>

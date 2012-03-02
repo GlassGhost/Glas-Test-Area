@@ -6,16 +6,21 @@ along with this distribution.  If not,  You may obtain a copy of the License  at
     http://github.com/GlassGhost/Glas-Test-Area/raw/master/LICENSE.txt
 ******************************LIBRARY DESCRIPTION*******************************
 This header may convert loops into goto statements:
-
 break;//goes to current loop end
 continue;//goes to current loop start
 
-for (variable declaration; condition; variable update)
+for ([variable declaration]; [condition]; [variable update])
 [loop body statement]
 
-do [loop body statement] while ( condition );
+do [loop body statement] while ([condition]);
 
-while ( condition ) [loop body statement]
+while ([condition])[loop body statement]
+
+A pointer into an array, for example, is just a pair of
+* array (reference)
+* index into it
+when the pointer points outside of the array the behavior is undefined
+in C++, so I would like the Java version to fail in a case like that.
 
 **********************************DEPENDENCIES**********************************
 
@@ -28,4 +33,3 @@ while ( condition ) [loop body statement]
 /*!***************************Structures and Unions*****************************
 
 /**********************************Functions***********************************/
-
