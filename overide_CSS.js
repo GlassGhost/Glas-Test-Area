@@ -14,11 +14,11 @@ another browser). This function is directly from
 
 var MSIEV = getInternetExplorerVersion();
 
-/*! CSS_override() uses the text value of $Css_Text$ to override  the  style  of
+/*! override_CSS() uses the text value of $CSS_Text$ to override  the  style  of
 the specified document $Doc$ e.g. an IFrame; If not specified $Doc$ defaults  to
 the current document. For the history of this function: look at monobook.js from
 http://en.wikipedia.org/wiki/User:GlasGhost/Encyclopedia_feel_User_skin
-*/function CSS_override(Css_Text, Doc){
+*/function override_CSS(CSS_Text, Doc){
 	//Secure $Head$
 	Doc = Doc||document;	var head = Doc.getElementsByTagName('head')[0];
 	if(!head || head == null){
@@ -29,9 +29,9 @@ http://en.wikipedia.org/wiki/User:GlasGhost/Encyclopedia_feel_User_skin
 	var PendingStyle = Doc.createElement("style");
 	PendingStyle.type = "text/css";
 	if (MSIEV == -1){// The standard method
-		PendingStyle.appendChild(Doc.createTextNode(Css_Text));
+		PendingStyle.appendChild(Doc.createTextNode(CSS_Text));
 	}else if (MSIEV < 9){//IE6-8 use proprietary styleSheet.cssText instead
-		PendingStyle.styleSheet.cssText = Css_Text;
+		PendingStyle.styleSheet.cssText = CSS_Text;
 		if (head.firstChild){// Add the new style with a higher priority
 			head.insertBefore(PendingStyle, head.firstChild);
 		}else{ head.appendChild(PendingStyle); }
